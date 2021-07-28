@@ -39,7 +39,7 @@ const Home = () => {
           <ul>
             {data.offers.map((offer, index) => {
               return (
-                <Link to={`offer/${offer._id}`}>
+                <Link to={`offer/${offer._id}`} style={{ color: "inherit" }}>
                   <li key={offer._id}>
                     <div
                       className="avatar"
