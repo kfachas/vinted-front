@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import axios from "axios";
+import subheaderImg from "../subheader.jpeg";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-  const id = "23230203290302";
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,11 +20,20 @@ const Home = () => {
     };
     fetchData();
   }, []);
+  document.body.style.backgroundColor = "white";
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <>
       <Header />
+      <div className="subheader1">
+        <div className="subheader2">
+          <div className="bloc">
+            <span>Prêts à faire du tri dans vos placards ?</span>
+            <button>Commencer à vendre</button>
+          </div>
+        </div>
+      </div>
       <main>
         <div className="home">
           <ul>
@@ -32,12 +41,24 @@ const Home = () => {
               return (
                 <Link to={`offer/${offer._id}`}>
                   <li key={offer._id}>
-                    <span>{offer.owner.account.username}</span>
+                    <div
+                      className="avatar"
+                      style={{
+                        justifyContent: !offer.owner.account.avatar && "center",
+                      }}
+                    >
+                      {offer.owner.account.avatar && (
+                        <img
+                          src={offer.owner.account.avatar}
+                          alt={offer.owner.account.username}
+                        />
+                      )}
+                      <p>{offer.owner.account.username}</p>
+                    </div>
                     <img src={offer.product_image} alt={offer.product_name} />
 
-                    <span>
-                      {offer.product_name} {offer.product_price} €
-                    </span>
+                    <span>{offer.product_name}</span>
+                    <span>{offer.product_price} €</span>
                   </li>
                 </Link>
               );

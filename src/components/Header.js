@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import logo from "../Vinted_logo.png";
-const Header = () => {
+const Header = ({ margin }) => {
   return (
-    <header>
+    <header style={{ marginBottom: margin }}>
       <Link to="/home">
         <img src={logo} alt="Vinted" />
       </Link>

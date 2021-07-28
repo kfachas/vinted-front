@@ -20,11 +20,12 @@ const Offer = () => {
     };
     fetchData();
   }, []);
+  document.body.style.backgroundColor = "#eaedee";
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <>
-      <Header />
+      <Header margin={"35px"} />
       <main>
         <div className="offer">
           <div>

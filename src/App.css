@@ -1,5 +1,8 @@
-body {
-  background-color: #eaedee;
+*:visited {
+  color: inherit;
+}
+*:link {
+  text-decoration: none;
 }
 
 header {
@@ -7,7 +10,6 @@ header {
   justify-content: space-between;
   background-color: white;
   height: 80px;
-  margin-bottom: 35px;
   align-items: center;
   padding-left: 80px;
 }
@@ -25,6 +27,47 @@ header input {
   border-radius: 5px;
 }
 
+/* subheader */
+.subheader1 {
+  background: url("./subheader.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.subheader2 {
+  width: 1080px;
+  margin: 0 auto;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.bloc {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  height: 150px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.bloc span {
+  font-size: 25px;
+}
+
+.bloc button {
+  border: none;
+  background-color: #09b0ba;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px;
+  width: 150px;
+}
+
 /* Home */
 
 main {
@@ -38,8 +81,8 @@ main {
   object-position: center;
 }
 .home ul li {
+  text-align: center;
   display: flex;
-  flex: 1 1 25%;
   width: 150px;
   flex-direction: column;
   margin-right: 15px;
@@ -53,6 +96,19 @@ main {
 .home ul {
   display: flex;
   flex-wrap: wrap;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.avatar img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  padding: 5px;
 }
 
 /* Offer */
