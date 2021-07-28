@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Header from "../components/Header";
 import axios from "axios";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,24 +23,27 @@ const Home = () => {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    <div className="home">
-      <ul>
-        {data.offers.map((offer, index) => {
-          return (
-            <Link to={`offer/${offer._id}`}>
-              <li key={offer._id}>
-                <span>{offer.owner.account.username}</span>
-                <img src={offer.product_image} alt={offer.product_name} />
+    <main>
+      <Header />
+      <div className="home">
+        <ul>
+          {data.offers.map((offer, index) => {
+            return (
+              <Link to={`offer/${offer._id}`}>
+                <li key={offer._id}>
+                  <span>{offer.owner.account.username}</span>
+                  <img src={offer.product_image} alt={offer.product_name} />
 
-                <span>
-                  {offer.product_name} {offer.product_price} €
-                </span>
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
-    </div>
+                  <span>
+                    {offer.product_name} {offer.product_price} €
+                  </span>
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+      </div>
+    </main>
   );
 };
 

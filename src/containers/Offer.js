@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Header from "../components/Header";
 import axios from "axios";
 const Offer = () => {
   const { id } = useParams();
@@ -22,18 +23,51 @@ const Offer = () => {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    <div className="offer">
-      <Link to="/home">Home</Link>
-      <p>id : {id}</p>
-      <div>
-        <img src={data.product_image} alt={data.product_name} />
+    <main>
+      <Header />
+      <div className="offer">
+        <div>
+          <img src={data.product_image} alt={data.product_name} />
+        </div>
+        <div className="product">
+          <h3>{data.product_price} €</h3>
+          <div className="desc">
+            <ul>
+              <li>MARQUE</li>
+              <li>TAILLE</li>
+              <li>ÉTAT</li>
+              <li>COULEUR</li>
+              <li>EMPLACEMENT</li>
+            </ul>
+            <ul>
+              <li>{data.product_details[0].MARQUE}</li>
+              <li>{data.product_details[1].TAILLE}</li>
+              <li>{data.product_details[2].ÉTAT}</li>
+              <li>{data.product_details[3].COULEUR}</li>
+              <li>{data.product_details[4].EMPLACEMENT}</li>
+            </ul>
+          </div>
+          <div className="owner">
+            <p style={{ fontWeight: "bold" }}>{data.product_name}</p>
+            <p style={{ color: "rgb(177, 177, 177)" }}>
+              {data.product_description}
+            </p>
+            <ul>
+              <li>
+                {data.owner.account.avatar && (
+                  <img
+                    src={data.owner.account.avatar}
+                    alt={data.owner.account.username}
+                  />
+                )}
+              </li>
+              <li>{data.owner.account.username}</li>
+            </ul>
+            <button>Acheter</button>
+          </div>
+        </div>
       </div>
-      <div className="product">
-        <span>{data.product_name}</span>
-        <p>{data.product_description}</p>
-        <span>{data.product_price} €</span>
-      </div>
-    </div>
+    </main>
   );
 };
 
