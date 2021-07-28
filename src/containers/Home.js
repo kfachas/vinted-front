@@ -23,27 +23,29 @@ const Home = () => {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    <main>
+    <>
       <Header />
-      <div className="home">
-        <ul>
-          {data.offers.map((offer, index) => {
-            return (
-              <Link to={`offer/${offer._id}`}>
-                <li key={offer._id}>
-                  <span>{offer.owner.account.username}</span>
-                  <img src={offer.product_image} alt={offer.product_name} />
+      <main>
+        <div className="home">
+          <ul>
+            {data.offers.map((offer, index) => {
+              return (
+                <Link to={`offer/${offer._id}`}>
+                  <li key={offer._id}>
+                    <span>{offer.owner.account.username}</span>
+                    <img src={offer.product_image} alt={offer.product_name} />
 
-                  <span>
-                    {offer.product_name} {offer.product_price} €
-                  </span>
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
-      </div>
-    </main>
+                    <span>
+                      {offer.product_name} {offer.product_price} €
+                    </span>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+        </div>
+      </main>
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ const Header = () => {
       <Link to="/home">
         <img src={logo} alt="Vinted" />
       </Link>
+      <input type="text" placeholder="Recherche des articles" />
       <div>
         <button>S'inscrire</button>
         <button>Se connecter</button>

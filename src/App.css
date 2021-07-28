@@ -16,7 +16,21 @@ header img {
   height: 50px;
 }
 
+header input {
+  border: none;
+  outline: none;
+  padding: 10px;
+  padding-right: 150px;
+  border: 1px solid #eaedee;
+  border-radius: 5px;
+}
+
 /* Home */
+
+main {
+  margin: 0 auto;
+  max-width: 1080px;
+}
 .home img {
   height: 250px;
   width: 150px;
@@ -64,6 +78,16 @@ header img {
   width: 350px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.product button {
+  border: none;
+  background-color: #09b0ba;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .product h3 {
@@ -93,8 +117,8 @@ header img {
 }
 
 .owner {
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: 65px;
+  padding-top: 65px;
   border-top: 1px solid gainsboro;
 }
 
@@ -102,6 +126,10 @@ header img {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.owner p {
+  padding-bottom: 10px;
 }
 
 .owner img {
