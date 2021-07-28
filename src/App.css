@@ -1,1 +1,47 @@
-/* Other rules */
+/* Home */
+.home img {
+  height: 250px;
+  width: 150px;
+  object-fit: cover;
+  object-position: center;
+}
+.home ul li {
+  display: flex;
+  flex: 1 1 25%;
+  width: 150px;
+  flex-direction: column;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+}
+
+.home ul li:hover {
+  opacity: 0.7;
+}
+.home ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Offer */
+
+.offer {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.offer img {
+  height: 400px;
+  width: 300px;
+  object-position: center;
+  object-fit: cover;
+}
+
+.product {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
