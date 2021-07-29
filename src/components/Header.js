@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 import logo from "../Vinted_logo.png";
 const Header = ({ margin }) => {
   return (
@@ -8,8 +9,10 @@ const Header = ({ margin }) => {
       </Link>
       <input type="text" placeholder="Recherche des articles" />
       <div>
-        <button>S'inscrire</button>
-        <button>Se connecter</button>
+        <Link to="/signup">
+          <button>SIGN UP</button>
+        </Link>
+        <button>{Cookies.get("token") ? "Mon profil" : "Se connecter"}</button>
       </div>
       <div>
         <button>Vends tes articles</button>

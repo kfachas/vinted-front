@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import axios from "axios";
-import subheaderImg from "../subheader.jpeg";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
@@ -39,8 +38,12 @@ const Home = () => {
           <ul>
             {data.offers.map((offer, index) => {
               return (
-                <Link to={`offer/${offer._id}`} style={{ color: "inherit" }}>
-                  <li key={offer._id}>
+                <Link
+                  to={`offer/${offer._id}`}
+                  style={{ color: "inherit" }}
+                  key={offer._id}
+                >
+                  <li>
                     <div
                       className="avatar"
                       style={{

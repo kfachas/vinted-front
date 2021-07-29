@@ -19,7 +19,7 @@ const Offer = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
   document.body.style.backgroundColor = "#eaedee";
   return isLoading ? (
     <span>En cours de chargement...</span>
