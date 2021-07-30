@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 const Login = ({ setUser, userToken }) => {
@@ -39,21 +39,29 @@ const Login = ({ setUser, userToken }) => {
     setValues(obj);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="email"
-        placeholder="email"
-        onChange={handleEmailChange}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="password"
-        onChange={handlePasswordChange}
-      />
-      <input type="submit" value="Submit" />
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="email"
+          placeholder="email"
+          onChange={handleEmailChange}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          onChange={handlePasswordChange}
+        />
+        <input type="submit" value="Submit" />
+      </form>
+      <span>
+        Vous n'êtes pas encore inscrit ? Cliquez{" "}
+        <Link to="/signup" style={{ color: "cyan" }}>
+          ici
+        </Link>
+      </span>
+    </>
   );
 };
 

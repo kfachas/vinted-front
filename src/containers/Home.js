@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 const Home = ({ search, state, sortPrice, setPageOffer }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
@@ -29,7 +30,11 @@ const Home = ({ search, state, sortPrice, setPageOffer }) => {
         <div className="subheader2">
           <div className="bloc">
             <span>Prêts à faire du tri dans vos placards ?</span>
-            <Link to="/publish">
+            <Link
+              to={
+                Cookies.get("userToken") === "undefined" ? "/login" : "/publish"
+              }
+            >
               <button>Commencer à vendre</button>
             </Link>
           </div>
