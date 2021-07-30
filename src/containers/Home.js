@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Header from "../components/Header";
 import axios from "axios";
-const Home = () => {
+import { useState, useEffect } from "react";
+const Home = ({ search, state, sortPrice, setPageOffer }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
+  setPageOffer(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://orion-vinted-kevin-fachas.herokuapp.com/offers"
+          `https://orion-vinted-kevin-fachas.herokuapp.com/offers?title=${search}&priceMin=${state.price.value.min}&priceMax=${state.price.value.max}&sort=${sortPrice}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -18,18 +18,20 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [search, state.price.value.min, state.price.value.max, sortPrice]);
+
   document.body.style.backgroundColor = "white";
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <>
-      <Header />
       <div className="subheader1">
         <div className="subheader2">
           <div className="bloc">
             <span>Prêts à faire du tri dans vos placards ?</span>
-            <button>Commencer à vendre</button>
+            <Link to="/publish">
+              <button>Commencer à vendre</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -39,6 +41,9 @@ const Home = () => {
             {data.offers.map((offer, index) => {
               return (
                 <Link
+                  onClick={() => {
+                    setPageOffer(false);
+                  }}
                   to={`offer/${offer._id}`}
                   style={{ color: "inherit" }}
                   key={offer._id}

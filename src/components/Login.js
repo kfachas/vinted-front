@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-const Signup = ({ setUser, userToken }) => {
+const Login = ({ setUser, userToken }) => {
   const [values, setValues] = useState({});
   const history = useHistory();
 
@@ -10,7 +10,7 @@ const Signup = ({ setUser, userToken }) => {
       event.preventDefault();
 
       await axios
-        .post("https://lereacteur-vinted-api.herokuapp.com/user/signup", values)
+        .post("https://lereacteur-vinted-api.herokuapp.com/user/login", values)
         .then(
           (response) => {
             console.log(response.data);
@@ -38,18 +38,6 @@ const Signup = ({ setUser, userToken }) => {
     obj.password = value;
     setValues(obj);
   };
-  const handlePhoneChange = (event) => {
-    const value = event.target.value;
-    const obj = { ...values };
-    obj.phone = value;
-    setValues(obj);
-  };
-  const handleUsernameChange = (event) => {
-    const value = event.target.value;
-    const obj = { ...values };
-    obj.username = value;
-    setValues(obj);
-  };
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -57,18 +45,6 @@ const Signup = ({ setUser, userToken }) => {
         name="email"
         placeholder="email"
         onChange={handleEmailChange}
-      />
-      <input
-        type="text"
-        name="username"
-        placeholder="username"
-        onChange={handleUsernameChange}
-      />
-      <input
-        type="text"
-        name="phone"
-        placeholder="phone"
-        onChange={handlePhoneChange}
       />
       <input
         type="password"
@@ -81,4 +57,4 @@ const Signup = ({ setUser, userToken }) => {
   );
 };
 
-export default Signup;
+export default Login;

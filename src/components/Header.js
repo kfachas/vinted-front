@@ -1,21 +1,93 @@
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import logo from "../Vinted_logo.png";
-const Header = ({ margin }) => {
+import RangeBar from "./RangeBar";
+
+const Header = ({
+  setUser,
+  setSearch,
+  state,
+  setState,
+  sortPrice,
+  setSortPrice,
+  pageOffer,
+  setPageOffer,
+}) => {
+  const onChange = (data) => {
+    setState({
+      [data.type]: {
+        ...state[data.type],
+        value: data.value,
+      },
+    });
+  };
+  const handleChange = (elem) => {
+    const value = elem.target.value;
+    setSearch(value);
+  };
   return (
-    <header style={{ marginBottom: margin }}>
+    <header>
       <Link to="/home">
         <img src={logo} alt="Vinted" />
       </Link>
-      <input type="text" placeholder="Recherche des articles" />
-      <div>
-        <Link to="/signup">
-          <button>SIGN UP</button>
-        </Link>
-        <button>{Cookies.get("token") ? "Mon profil" : "Se connecter"}</button>
+      <div className="filters">
+        <input
+          type="text"
+          placeholder="Recherche des articles"
+          onChange={handleChange}
+        />
+        {pageOffer && (
+          <div>
+            <div className="sortPrice">
+              <span>Trier par prix :</span>
+              <button
+                onClick={() => {
+                  if (sortPrice === "price-asc") {
+                    setSortPrice("price-desc");
+                  } else {
+                    setSortPrice("price-asc");
+                  }
+                }}
+              >
+                {sortPrice === "price-desc" ? ">" : "<"}
+              </button>
+            </div>
+            <RangeBar state={state} setState={setState} onChange={onChange} />
+          </div>
+        )}
       </div>
       <div>
-        <button>Vends tes articles</button>
+        {Cookies.get("userToken") !== "undefined" ? (
+          <Link to="/redirect">
+            <button
+              className="disconnectBtn"
+              onClick={() => {
+                Cookies.remove("userToken");
+                setUser();
+              }}
+            >
+              Se déconnecter
+            </button>
+          </Link>
+        ) : (
+          <Link to="/signup">
+            <button className="headerBtn" style={{ marginRight: "10px" }}>
+              SIGN UP
+            </button>
+          </Link>
+        )}
+        {Cookies.get("userToken") === "undefined" && (
+          <button className="headerBtn">
+            <Link to="/login">Se connecter</Link>
+          </button>
+        )}
+      </div>
+      <div>
+        <Link
+          to={Cookies.get("userToken") !== "undefined" ? "/publish" : "/login"}
+        >
+          <button className="headerBtn">Vends tes articles</button>
+        </Link>
       </div>
     </header>
   );

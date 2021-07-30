@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../components/Header";
 import axios from "axios";
 const Offer = () => {
   const { id } = useParams();
@@ -25,7 +24,6 @@ const Offer = () => {
     <span>En cours de chargement...</span>
   ) : (
     <>
-      <Header margin={"35px"} />
       <main>
         <div className="offer">
           <div>
