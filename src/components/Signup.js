@@ -1,10 +1,13 @@
 import { useHistory, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-const Signup = ({ setUser, userToken }) => {
+const Signup = ({ setUser, userToken, setHideFilters }) => {
+  setHideFilters(true);
   const [values, setValues] = useState({});
   const [picture, setPicture] = useState();
   const history = useHistory();
+
+  document.body.style.backgroundColor = "#eaedee";
 
   const handleSubmit = async (event) => {
     try {
@@ -42,7 +45,18 @@ const Signup = ({ setUser, userToken }) => {
   };
   console.log(userToken);
   return (
-    <>
+    <main className="signup">
+      <h3
+        style={{
+          backgroundColor: "white",
+          padding: "10px 40px",
+          borderTopLeftRadius: "5px",
+          borderTopRightRadius: "5px",
+          textDecoration: "underline",
+        }}
+      >
+        Inscription
+      </h3>
       <form onSubmit={handleSubmit}>
         <input
           type="file"
@@ -96,13 +110,13 @@ const Signup = ({ setUser, userToken }) => {
         />
         <input type="submit" value="Submit" />
       </form>
-      <span>
-        Vous êtes déjà inscrit ? Cliquez
-        <Link to="/login" style={{ color: "cyan" }}>
+      <span style={{ padding: "20px" }}>
+        Vous êtes déjà inscrit ? Veuillez cliquer{" "}
+        <Link to="/login" style={{ color: "#09b0ba" }}>
           ici
         </Link>
       </span>
-    </>
+    </main>
   );
 };
 

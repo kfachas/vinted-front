@@ -6,17 +6,16 @@ import RangeBar from "./RangeBar";
 const Header = ({
   setUser,
   setSearch,
-  state,
-  setState,
+  ranges,
+  setRange,
   sortPrice,
   setSortPrice,
-  pageOffer,
-  setPageOffer,
+  hideFilters,
 }) => {
   const onChange = (data) => {
-    setState({
+    setRange({
       [data.type]: {
-        ...state[data.type],
+        ...ranges[data.type],
         value: data.value,
       },
     });
@@ -36,7 +35,7 @@ const Header = ({
           placeholder="Recherche des articles"
           onChange={handleChange}
         />
-        {pageOffer && (
+        {!hideFilters && (
           <div>
             <div className="sortPrice">
               <span>Trier par prix :</span>
@@ -52,13 +51,13 @@ const Header = ({
                 {sortPrice === "price-desc" ? ">" : "<"}
               </button>
             </div>
-            <RangeBar state={state} setState={setState} onChange={onChange} />
+            <RangeBar ranges={ranges} setRange={setRange} onChange={onChange} />
           </div>
         )}
       </div>
       <div>
         {Cookies.get("userToken") !== "undefined" ? (
-          <Link to="/redirect">
+          <Link to="/">
             <button
               className="disconnectBtn"
               onClick={() => {

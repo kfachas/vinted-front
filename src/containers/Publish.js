@@ -3,7 +3,8 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 
-const Publish = ({ userToken }) => {
+const Publish = ({ userToken, setHideFilters }) => {
+  setHideFilters(true);
   const history = useHistory();
   const [items, setItems] = useState({});
   const [picture, setPicture] = useState();

@@ -36,6 +36,10 @@ header img {
   width: 120px;
 }
 
+#lastBtnHeader {
+  margin-right: 20px;
+}
+
 .disconnectBtn {
   border: none;
   background-color: #c2175b;
@@ -337,20 +341,177 @@ main {
   width: 400px;
 }
 
+/* signup */
+.signup {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup form {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 500px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.signup input:first-child {
+  padding: 20px;
+}
+
+.signup input:not(:first-child) {
+  outline: none;
+  width: 200px;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid bisque;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+
+.signup input:last-child {
+  width: 175px;
+  background-color: #09b0ba;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signup input:last-child:hover {
+  opacity: 0.8;
+}
+
+.signup input:focus {
+  border-bottom: 1px solid #09b0ba;
+}
+
+/* login */
+
+.login {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login form {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.login input {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  border-bottom: 1px solid bisque;
+  padding: 5px;
+  margin: 10px 0;
+}
+
+.login input:focus {
+  border-bottom: 1px solid #09b0ba;
+}
+
+.login input:last-child {
+  width: 75px;
+  background-color: #09b0ba;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login input:last-child:hover {
+  opacity: 0.8;
+}
+
+/* checkoutForm */
+.checkoutForm {
+  padding-top: 50px;
+}
+
+.checkoutForm form {
+  width: 500px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+}
+.checkoutForm li {
+  margin-bottom: 10px;
+}
+
+.checkoutForm form > div {
+  border-top: 1px solid black;
+  padding-top: 15px;
+  margin: 15px 0;
+}
+
+.checkoutForm form span {
+  border: 1px solid black;
+  padding: 5px;
+}
+/* 
+.cardNumber {
+  margin-top: 5px;
+  border: 1px solid black;
+  width: 140px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.cardExpiry {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  width: 55px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.cardCvc {
+  margin-top: 5px;
+  border: 1px solid black;
+  width: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+} */
+
 @media screen and (max-width: 1144px) {
+  header {
+    margin-top: 20px;
+    flex-direction: column;
+    padding-bottom: 100px;
+  }
+
+  header img {
+    margin-bottom: 20px;
+  }
+
   #lastBtnHeader {
     display: none;
   }
 }
 
 @media screen and (max-width: 768px) {
-  main {
-    overflow: hidden;
-  }
   header {
     padding-left: 0;
     max-width: 768px;
-    display: flex;
     flex-direction: column;
     height: 300px;
     padding-bottom: 20px;

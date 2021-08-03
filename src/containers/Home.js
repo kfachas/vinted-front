@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-const Home = ({ search, state, sortPrice, setPageOffer }) => {
+const Home = ({ search, ranges, sortPrice, setHideFilters }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
-  setPageOffer(true);
+  setHideFilters(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://orion-vinted-kevin-fachas.herokuapp.com/offers?title=${search}&priceMin=${state.price.value.min}&priceMax=${state.price.value.max}&sort=${sortPrice}`
+          `https://orion-vinted-kevin-fachas.herokuapp.com/offers?title=${search}&priceMin=${ranges.price.value.min}&priceMax=${ranges.price.value.max}&sort=${sortPrice}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -19,7 +19,7 @@ const Home = ({ search, state, sortPrice, setPageOffer }) => {
       }
     };
     fetchData();
-  }, [search, state.price.value.min, state.price.value.max, sortPrice]);
+  }, [search, ranges.price.value.min, ranges.price.value.max, sortPrice]);
 
   document.body.style.backgroundColor = "white";
   return isLoading ? (
@@ -47,7 +47,7 @@ const Home = ({ search, state, sortPrice, setPageOffer }) => {
               return (
                 <Link
                   onClick={() => {
-                    setPageOffer(false);
+                    setHideFilters(true);
                   }}
                   to={`offer/${offer._id}`}
                   style={{ color: "inherit" }}

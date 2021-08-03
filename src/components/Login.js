@@ -1,9 +1,12 @@
 import { useHistory, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-const Login = ({ setUser, userToken }) => {
+const Login = ({ setUser, userToken, setHideFilters }) => {
+  setHideFilters(true);
   const [values, setValues] = useState({});
   const history = useHistory();
+
+  document.body.style.backgroundColor = "#eaedee";
 
   const handleSubmit = async (event) => {
     try {
@@ -42,7 +45,18 @@ const Login = ({ setUser, userToken }) => {
     setValues(obj);
   };
   return (
-    <>
+    <main className="login">
+      <h3
+        style={{
+          backgroundColor: "white",
+          padding: "10px 20px",
+          borderTopLeftRadius: "5px",
+          borderTopRightRadius: "5px",
+          textDecoration: "underline",
+        }}
+      >
+        Connexion
+      </h3>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -60,13 +74,13 @@ const Login = ({ setUser, userToken }) => {
         />
         <input type="submit" value="Submit" />
       </form>
-      <span>
-        Vous n'êtes pas encore inscrit ? Cliquez{" "}
-        <Link to="/signup" style={{ color: "cyan" }}>
+      <span style={{ padding: "20px" }}>
+        Vous n'êtes pas encore inscrit ? Veuillez cliquer{" "}
+        <Link to="/signup" style={{ color: "#09b0ba" }}>
           ici
         </Link>
       </span>
-    </>
+    </main>
   );
 };
 

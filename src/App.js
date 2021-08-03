@@ -13,11 +13,11 @@ import Cookies from "js-cookie";
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
   const [search, setSearch] = useState("");
-  const [state, setState] = useState({
+  const [ranges, setRange] = useState({
     price: { label: "price", min: 0, max: 500, value: { min: 0, max: 500 } },
   });
   const [sortPrice, setSortPrice] = useState("price-asc");
-  const [pageOffer, setPageOffer] = useState(true);
+  const [hideFilters, setHideFilters] = useState(false);
   const setUser = (token) => {
     Cookies.set("userToken", token);
     setUserToken(token);
@@ -29,25 +29,33 @@ function App() {
         userToken={userToken}
         setUser={setUser}
         setSearch={setSearch}
-        state={state}
-        setState={setState}
+        ranges={ranges}
+        setRange={setRange}
         sortPrice={sortPrice}
         setSortPrice={setSortPrice}
-        pageOffer={pageOffer}
-        setPageOffer={setPageOffer}
+        hideFilters={hideFilters}
+        setHideFilters={setHideFilters}
       />
       <Switch>
         <Route path="/payment">
-          <Payment />
+          <Payment setHideFilters={setHideFilters} />
         </Route>
         <Route path="/publish">
-          <Publish userToken={userToken} />
+          <Publish userToken={userToken} setHideFilters={setHideFilters} />
         </Route>
         <Route path="/login">
-          <Login setUser={setUser} userToken={userToken} />
+          <Login
+            setUser={setUser}
+            userToken={userToken}
+            setHideFilters={setHideFilters}
+          />
         </Route>
         <Route path="/signup">
-          <Signup setUser={setUser} userToken={userToken} />
+          <Signup
+            setUser={setUser}
+            userToken={userToken}
+            setHideFilters={setHideFilters}
+          />
         </Route>
         <Route path="/offer/:id">
           <Offer />
@@ -55,9 +63,9 @@ function App() {
         <Route path="/">
           <Home
             search={search}
-            state={state}
+            ranges={ranges}
             sortPrice={sortPrice}
-            setPageOffer={setPageOffer}
+            setHideFilters={setHideFilters}
           />
         </Route>
       </Switch>

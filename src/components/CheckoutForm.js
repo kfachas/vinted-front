@@ -1,9 +1,17 @@
 import { useState } from "react";
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import {
+  useStripe,
+  useElements,
+  CardElement,
+  // CardCvcElement,
+  // CardExpiryElement,
+  // CardNumberElement,
+} from "@stripe/react-stripe-js";
 import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 
-const CheckoutForm = ({ userToken }) => {
+const CheckoutForm = ({ userToken, setHideFilters }) => {
+  setHideFilters(true);
   const history = useHistory();
   const location = useLocation();
   const { title, price, owner, description } = location.state;
@@ -11,31 +19,31 @@ const CheckoutForm = ({ userToken }) => {
   const elements = useElements();
 
   const [success, setSuccess] = useState(false);
-
+  const total = price + 0.8 + 0.4;
+  total.toFixed(2);
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // On récupère ici les données bancaires que l'utilisateur rentre
+      // take the input of user's bank data
       const cardElement = elements.getElement(CardElement);
 
-      // Demande de création d'un token via l'API Stripe
-      // On envoie les données bancaires dans la requête
+      // Create token from stripe and check bank data
       const stripeResponse = await stripe.createToken(cardElement, {
         name: userToken,
       });
       const stripeToken = stripeResponse.token.id;
-      // Une fois le token reçu depuis l'API Stripe
-      // Requête vers notre serveur
-      // On envoie le token reçu depuis l'API Stripe
+
+      // send the stripe token at the back-end
       const response = await axios.post(
         "https://orion-vinted-kevin-fachas.herokuapp.com/payment",
         {
           stripeToken,
-          price,
+          price: total.toFixed(2),
           description,
         }
       );
-      // Si la réponse du serveur est favorable, la transaction a eu lieu
+      console.log(response);
+      // if the user's bank data are fine, so send success message
       if (response.status === 200) {
         setSuccess(true);
       }
@@ -46,18 +54,19 @@ const CheckoutForm = ({ userToken }) => {
   };
 
   return (
-    <>
+    <main className="checkoutForm">
       {!success ? (
         <form onSubmit={handleSubmit}>
+          <ul>
+            <li>{title}</li>
+            <li>{description}</li>
+            <li>Vendeur : {owner}</li>
+            <li>Prix initial : {price}€</li>
+            <li>Frais protection acheteurs : 0.40 €</li>
+            <li>Frais de port : 0.80 €</li>
+          </ul>
+          <span>Total: {total.toFixed(2)} €</span>
           <CardElement />
-          <span>{title}</span>
-          <br />
-          <span>{description}</span>
-          <br />
-          <span>Vendeur : {owner}</span>
-          <br />
-          <span> {price}€</span>
-          <br />
           <button type="submit">Valider</button>
         </form>
       ) : (
@@ -72,7 +81,7 @@ const CheckoutForm = ({ userToken }) => {
           }, 6000)}
         </>
       )}
-    </>
+    </main>
   );
 };
 
