@@ -45,7 +45,7 @@ const Publish = ({ userToken }) => {
     <Redirect to="/login" />
   ) : (
     <main className="publish">
-      <h3>Vends tes articles</h3>
+      <h3 style={{ padding: "25px", fontSize: "35px" }}>Vends tes articles</h3>
       <form onSubmit={handleSubmit}>
         <ul>
           <li>
@@ -74,7 +74,7 @@ const Publish = ({ userToken }) => {
             <h4>Décris ton article</h4>
             <textarea
               required
-              placeholder="Décris ton article"
+              placeholder="Description"
               cols="50"
               row="5"
               onChange={(event) => {
@@ -151,22 +151,16 @@ const Publish = ({ userToken }) => {
           </li>
           <li>
             <h4>Price</h4>
-            <div>
-              <input
-                required
-                type="price"
-                placeholder="0.00 €"
-                onChange={(event) => {
-                  const obj = { ...items };
-                  obj.price = event.target.value;
-                  setItems(obj);
-                }}
-              />
-              <div>
-                <input type="checkbox" />
-                <span>Je suis intéréssé(e) par les échanges</span>
-              </div>
-            </div>
+            <input
+              required
+              type="price"
+              placeholder="0.00 €"
+              onChange={(event) => {
+                const obj = { ...items };
+                obj.price = event.target.value;
+                setItems(obj);
+              }}
+            />
           </li>
           <li></li>
         </ul>

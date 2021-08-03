@@ -72,7 +72,7 @@ const Header = ({
         ) : (
           <Link to="/signup">
             <button className="headerBtn" style={{ marginRight: "10px" }}>
-              SIGN UP
+              S'inscrire
             </button>
           </Link>
         )}
@@ -86,7 +86,9 @@ const Header = ({
         <Link
           to={Cookies.get("userToken") !== "undefined" ? "/publish" : "/login"}
         >
-          <button className="headerBtn">Vends tes articles</button>
+          <button className="headerBtn" id="lastBtnHeader">
+            Vends tes articles
+          </button>
         </Link>
       </div>
     </header>
