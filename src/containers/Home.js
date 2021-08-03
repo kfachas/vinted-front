@@ -40,7 +40,7 @@ const Home = ({ search, state, sortPrice, setPageOffer }) => {
           </div>
         </div>
       </div>
-      <main>
+      <main style={{}}>
         <div className="home">
           <ul>
             {data.offers.map((offer, index) => {

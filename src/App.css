@@ -142,6 +142,7 @@ main {
 .home ul {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .avatar {
@@ -203,19 +204,10 @@ main {
   flex-direction: column;
 }
 
-.desc {
-  text-transform: uppercase;
-  width: 250px;
+.desc li {
   display: flex;
   justify-content: space-between;
-}
-
-.desc > ul:first-child {
-  color: rgb(177, 177, 177);
-}
-
-.desc ul li {
-  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .owner {
@@ -282,4 +274,52 @@ main {
 .input-range__label--min .input-range__label-container,
 .input-range__label--max .input-range__label-container {
   display: none;
+}
+
+/* Publish */
+
+.publish {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  border: 1px solid black;
+}
+
+.publish form {
+  width: 100%;
+}
+
+.publish ul {
+  display: flex;
+  flex-direction: column;
+}
+.publish li {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid #eaedee;
+}
+.publish input {
+  outline: none;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #eaedee;
+}
+
+.publish textarea {
+  resize: none;
+  outline: none;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #eaedee;
+}
+.publish input:focus,
+.publish textarea:focus {
+  border-bottom: 1px solid #09b0ba;
+}
+.publish textarea,
+.publish input {
+  width: 400px;
 }

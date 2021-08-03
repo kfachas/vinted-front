@@ -7,13 +7,14 @@ import Offer from "./containers/Offer";
 import Publish from "./containers/Publish";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Payment from "./containers/Payment";
 import Cookies from "js-cookie";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
   const [search, setSearch] = useState("");
   const [state, setState] = useState({
-    price: { label: "price", min: 0, max: 100, value: { min: 0, max: 100 } },
+    price: { label: "price", min: 0, max: 500, value: { min: 0, max: 500 } },
   });
   const [sortPrice, setSortPrice] = useState("price-asc");
   const [pageOffer, setPageOffer] = useState(true);
@@ -36,8 +37,11 @@ function App() {
         setPageOffer={setPageOffer}
       />
       <Switch>
+        <Route path="/payment">
+          <Payment />
+        </Route>
         <Route path="/publish">
-          <Publish />
+          <Publish userToken={userToken} />
         </Route>
         <Route path="/login">
           <Login setUser={setUser} userToken={userToken} />

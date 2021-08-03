@@ -15,7 +15,7 @@ const RangeBar = ({ state, onChange }) => {
       <span>Prix entre : </span>
       <InputRange
         minValue={0}
-        maxValue={100}
+        maxValue={500}
         step={1}
         onChange={onChange2}
         value={price.value}

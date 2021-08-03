@@ -10,7 +10,10 @@ const Login = ({ setUser, userToken }) => {
       event.preventDefault();
 
       await axios
-        .post("https://lereacteur-vinted-api.herokuapp.com/user/login", values)
+        .post(
+          "https://orion-vinted-kevin-fachas.herokuapp.com/user/login",
+          values
+        )
         .then(
           (response) => {
             console.log(response.data);
@@ -46,12 +49,14 @@ const Login = ({ setUser, userToken }) => {
           name="email"
           placeholder="email"
           onChange={handleEmailChange}
+          required
         />
         <input
           type="password"
           name="password"
           placeholder="password"
           onChange={handlePasswordChange}
+          required
         />
         <input type="submit" value="Submit" />
       </form>

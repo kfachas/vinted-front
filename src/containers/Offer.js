@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-const Offer = () => {
+import Cookies from "js-cookie";
+const Offer = ({ userToken }) => {
+  const history = useHistory();
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
@@ -33,18 +35,17 @@ const Offer = () => {
             <h3>{data.product_price} €</h3>
             <div className="desc">
               <ul>
-                <li>MARQUE</li>
-                <li>TAILLE</li>
-                <li>ÉTAT</li>
-                <li>COULEUR</li>
-                <li>EMPLACEMENT</li>
-              </ul>
-              <ul>
-                <li>{data.product_details[0].MARQUE}</li>
-                <li>{data.product_details[1].TAILLE}</li>
-                <li>{data.product_details[2].ÉTAT}</li>
-                <li>{data.product_details[3].COULEUR}</li>
-                <li>{data.product_details[4].EMPLACEMENT}</li>
+                {data.product_details.map((elem, index) => {
+                  const keys = Object.keys(elem);
+                  return (
+                    <li key={index}>
+                      <span style={{ color: "rgb(177, 177, 177)" }}>
+                        {keys[0]}
+                      </span>
+                      <span>{elem[keys[0]]}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div className="owner">
@@ -66,7 +67,22 @@ const Offer = () => {
                 <li>{data.owner.account.username}</li>
               </ul>
             </div>
-            <button>Acheter</button>
+            <button
+              onClick={() => {
+                if (Cookies.get("userToken") === "undefined") {
+                  history.push("/login");
+                } else {
+                  history.push("/payment", {
+                    title: data.product_name,
+                    price: data.product_price,
+                    owner: data.owner.account.username,
+                    description: data.product_description,
+                  });
+                }
+              }}
+            >
+              Acheter
+            </button>
           </div>
         </div>
       </main>
